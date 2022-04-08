@@ -1,78 +1,11 @@
-<style type="text/css">
-    body {
-            font-family: Helvetica,Arial;
-    }
-    table {
-            font-family: Arial;
-    }
-    .trtitle {
-            height: 40px;
-            font-size: 18px;
-            font-weight: bold;
-    }
-    .row1 {
-            background: #F1F1F1;
-            height: 40px;
-            font-size: 13px;
-            color: #3c3c3c;
-    }
-    .row2 {
-            background: #FDFDFD;
-            height: 40px;
-            font-size: 13px;
-            color: #3c3c3c;
-    }
-    a {
-            text-decoration: none;
-            color:#356d9c;
-    }
+<div>
+    <h1><a href="/">Django Girls Blog</a></h1>
+</div>
 
-</style>
-<table align="center" border="0" cellspacing="0" style="border: 20px solid #7a7f82; width:600px;">
-    <tr>
-            <td align="center" colspan="3" style="height:110px;"><img src="http://www.finkok.com/assets/images/Finkok_blue.jpg"></td>
-    </tr>
-    <tr>
-            <td align="center" colspan="3" style="background: #7a7f82">
-                    <span style="color:#FFF; font-size: 24px;">&nbsp;</span><br>
-            </td>
-    </tr>
-    <tr>
-            <td align="center" colspan="3" style="background: #356d9c; height:100px; ">
-                    <span style="color:#FFF; font-size: 35px;">Estimado Socio de Negocio</span><br>
-                    
-            </td>
-    </tr>
-    <tr>
-            <td align="justify" colspan="3" style="background: #f2f2f2; height:100px; padding:10px;" >
-            <span style="color:#6f6f6f; font-size: 18px; text-align:justify; ">
-                    <p>Le comunicamos que el pr&oacute;ximo lunes 26 de agosto del año en curso se llevar&aacute; a cabo un ajuste en nuestro servicio de validaci&oacute;n <a href="https://facturacion.finkok.com/servicios/soap/stamp.wsdl">productivo</a>, dicho cambio se relaciona con el c&aacute;lculo de los l&iacute;mites del atributo Importe correspondiente a los impuestos.</p>
-                    <p>A continuaci&oacute;n, se describe el ajuste efectuado:</p>
-
-                    <p>En base a la f&oacute;rmula descrita por el SAT para el c&aacute;lculo de los l&iacute;mites inferior y superior de los impuestos del comprobante se realiz&aacute; un ajuste en nuestro servicio de validaci&oacute;n considerando ahora la cantidad de decimales que se declar&aacute;n dentro de su XML en el atributo Importe de los impuestos.</p>
-                    <p> Actualmente dichos l&iacute;mites ya se realizan y se calculan aplicando la f&oacute;rmula del SAT con la cantidad de decimales de la moneda (siendo este el ejemplo que muestra el SAT en el anexo 20), sin embargo, se actualizar&aacute; usando el n&uacute;mero de decimales que lleve el mismo atributo Importe, esto para generar mayor exactitud</p>
-                    <ul style="margin-top: 5px; font-weight: bold;" align="justify">
-                            <li style="color:#6f6f6f; font-size: 15px;"><p>Calcular el l&iacute;mite inferior como: 
-                            <b>(Base - 10^-NumDecimalesBase / 2) * (TasaOCuota)</b> y este resultado truncado con la cantidad de decimales que tenga registrado este campo <b>(Importe)</b>.</p></li>
-                            <li style="color:#6f6f6f; font-size: 15px;"><p>Calcular el l&iacute;mite superior como: <b>(Base + 10^- NumDecimalesBase / 2 - 10^-12) * (TasaOCuota)</b> y este resultado redondearlo hacia arriba con la cantidad de decimales que tenga registrado este campo <b>(Importe)</b>.</p>
-                            </li>
-                    </ul>
-                    <p><b>Nota:</b> Si dentro del campo Importe se usan los mismos decimales que la moneda, <b>2 decimales</b>, este cambio no afectaría los l&iacute;mites, sin embargo, si son usados m&aacute;s decimales en el campo Importe, las f&oacute;rmulas se vuelven m&aacute;s exactas y se reducen los l&iacute;mites.</p>
-                    <p>Este ajuste ya se encuentra efectuado en nuestro ambiente <a href="https://demo-transicion.finkok.com/servicios/soap/stamp.wsdl">demo</a>, por tanto, les sugerimos realizar las pruebas pertinentes para verificar si es necesario generar alg&uacute;n cambio en sus sistemas.</p>
-                    <p>Cualquier duda al respecto favor de contactarnos.</p>
-                    </span>
-                    
-                    <span style="color:#6f6f6f; font-size: 18px;"><p align="center">Por su atenci&oacute;n, gracias.</b></span>
-                    <span style="color:#6f6f6f; font-size: 18px;"><p align="center">Soporte T&eacute;cnico</p></b></span>
-                    <span style="color:#6f6f6f; font-size: 18px;"><p align="center">soporte@finkok.com | Tel. 55 4624 01 81</p></b></span>
-            </td>
-    </tr>
-    <tr>
-            <td align="center" colspan="3" style="background: #7a7f82; padding-top:20px;">
-                    <span style="color:#FFF; font-size: 15px; font-weight: bold; font-style: italic;">www.finkok.com</span><br>
-            </td>
-    </tr>
-</table>
-
-
-
+{% for post in posts %}
+    <div>
+        <p> publicado: {{ post.published_date }}</p>
+        <h2><a href="">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
